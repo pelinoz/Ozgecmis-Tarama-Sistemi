@@ -2,7 +2,7 @@ import pandas as pd
 from flask import Flask, render_template, request
 
 # CSV dosyasını oku
-resume_data = pd.read_csv("extract_skills.csv")
+resume_data = pd.read_csv("cleaned_resume.csv")
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ def home():
         filtered_resumes = resume_data
         for skill in skills_list:
             filtered_resumes = filtered_resumes[
-                filtered_resumes["Skills"].str.contains(skill, case=False)
+                filtered_resumes["Cleaned_Resume"].str.contains(skill, case=False)
             ]
         return render_template("result.html", resumes=filtered_resumes)
     else:
